@@ -34,6 +34,20 @@ public class LojaVirtualTest {
 
 
     }
+    @Test
+    public void removerProdutoEstoqueTest(){
+        lojaVirtual.incluirProdutoNoEstoque(livro1, 1);
+        lojaVirtual.incluirProdutoNoEstoque(roupa1, 2);
+        assertEquals("espero ter 20 itens em estoque",20, lojaVirtual.getTamanhoEstoque());
+        assertEquals("espero encontrar 10 livros1",10, lojaVirtual.getTamanhoEstoque(livro1));
+        assertEquals("espero encontrar 10 roupa1",10, lojaVirtual.getTamanhoEstoque(roupa1));
+        lojaVirtual.removerProdutoEstoque(livro1, 5);
+        assertEquals(5, lojaVirtual.getTamanhoEstoque(livro1));
+        lojaVirtual.removerProdutoEstoque(roupa1, 3);
+        assertEquals("Espero encontrar 7 roupas no estoque",7, lojaVirtual.getTamanhoEstoque(roupa1));
+
+    }
+
 
     @Test
     public void getTamanhoEstoqueTest() {

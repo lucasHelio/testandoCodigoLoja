@@ -15,7 +15,15 @@ public class LojaVirtual {
     public void incluirProdutoNoEstoque(Produto produto, int quantidade){
         if(!possuiItem(produto)) {
             this.itens.add(produto);
-            totalItens+= quantidade * produto.quantidadeEmEstoque;
+            for(Produto itemEstoque : this.itens){
+                if(itemEstoque.equals(produto)){
+                    this.itens.get(this.itens.indexOf(itemEstoque)).setQuantidadeEmEstoque(this.itens.get(this.itens.indexOf(itemEstoque)).quantidadeEmEstoque = produto.quantidadeEmEstoque*quantidade);
+                    totalItens += this.itens.get(this.itens.indexOf(itemEstoque)).getQuantidadeEmEstoque();
+                }
+
+            }
+
+            //totalItens+= quantidade * produto.quantidadeEmEstoque;
         }
         else
         {   totalItens+= quantidade * produto.quantidadeEmEstoque;
@@ -24,7 +32,7 @@ public class LojaVirtual {
 
     }
 
-    void adicionaEstoqueProdutoExistente(Produto itemDesejado, int quantidade){
+    public void adicionaEstoqueProdutoExistente(Produto itemDesejado, int quantidade){
         for(Produto itemEstoque : this.itens){
             if(itemEstoque.equals(itemDesejado)){
                 this.itens.get(this.itens.indexOf(itemEstoque)).setQuantidadeEmEstoque(this.itens.get(this.itens.indexOf(itemEstoque)).quantidadeEmEstoque+(itemDesejado.quantidadeEmEstoque*quantidade));
@@ -32,10 +40,11 @@ public class LojaVirtual {
         }
     }
 
-    void removerProdutoEstoque(Produto itemDesejado, int quantidade){
+    public void removerProdutoEstoque(Produto itemDesejado, int quantidade){
         for(Produto itemEstoque : this.itens){
             if(itemEstoque.equals(itemDesejado)){
-                this.itens.get(this.itens.indexOf(itemEstoque)).setQuantidadeEmEstoque(this.itens.get(this.itens.indexOf(itemEstoque)).quantidadeEmEstoque-(itemDesejado.quantidadeEmEstoque*quantidade));
+                this.itens.get(this.itens.indexOf(itemEstoque)).setQuantidadeEmEstoque(this.itens.get(this.itens.indexOf(itemEstoque)).quantidadeEmEstoque-(quantidade));
+                totalItens-=quantidade;
             }
         }
     }
@@ -66,7 +75,7 @@ public class LojaVirtual {
             totalDeVendas+=valorDaCompra;
 
             removerProdutoEstoque(produto, quantidade); //<--- aqui tbm
-            totalItens-=produto.quantidadeEmEstoque*quantidade; //  <---  tem problema aqui
+            //totalItens-=produto.quantidadeEmEstoque*quantidade; //  <---  tem problema aqui
         }
         return String.format("Pagamento recebido no valor de R$ %.2f ", valorDaCompra);
 
