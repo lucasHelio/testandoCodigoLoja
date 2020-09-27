@@ -13,7 +13,7 @@ public class LojaVirtual {
     }
 
     public void incluirProdutoNoEstoque(Produto produto, int quantidade){
-        if(!possuiItem(produto)) {
+        if(!possuiItem(produto)) { //Caso o produto ainda não esteja no Estoque
             this.itens.add(produto);
             for(Produto itemEstoque : this.itens){
                 if(itemEstoque.equals(produto)){
@@ -25,8 +25,8 @@ public class LojaVirtual {
 
             //totalItens+= quantidade * produto.quantidadeEmEstoque;
         }
-        else
-        {   totalItens+= quantidade * produto.quantidadeEmEstoque;
+        else //Produto já existe no estoque
+        {   //totalItens+= quantidade * produto.quantidadeEmEstoque;
             adicionaEstoqueProdutoExistente(produto, quantidade);}
         //totalItens+= quantidade * produto.quantidadeEmEstoque;
 
@@ -35,6 +35,7 @@ public class LojaVirtual {
     public void adicionaEstoqueProdutoExistente(Produto itemDesejado, int quantidade){
         for(Produto itemEstoque : this.itens){
             if(itemEstoque.equals(itemDesejado)){
+                totalItens+= quantidade * itemDesejado.quantidadeEmEstoque;
                 this.itens.get(this.itens.indexOf(itemEstoque)).setQuantidadeEmEstoque(this.itens.get(this.itens.indexOf(itemEstoque)).quantidadeEmEstoque+(itemDesejado.quantidadeEmEstoque*quantidade));
             }
         }

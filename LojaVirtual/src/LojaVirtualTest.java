@@ -21,16 +21,16 @@ public class LojaVirtualTest {
     @Test
     public void testarIncluirProdutoNoEstoque() {
         lojaVirtual.incluirProdutoNoEstoque(livro1, 1);
-        assertEquals("O estoque da loja deve ser 10 após a inclusão de 1 livro1", 10, lojaVirtual.getTamanhoEstoque(),0);
-        assertEquals("O estoque do produto deve ser 1 após a inclusão de 1 produto",10, lojaVirtual.getTamanhoEstoque(livro1));
+        assertEquals("O estoque da loja deve ser 10 após a inclusão de 1 Livro1", 10, lojaVirtual.getTamanhoEstoque(),0);
+        assertEquals("O estoque do produto deve ser 1 após a inclusão de 1 Livro1",10, lojaVirtual.getTamanhoEstoque(livro1));
 
         lojaVirtual.incluirProdutoNoEstoque(roupa1, 1);
-        assertEquals("O estoque da loja deve ser 2 após a inclusão de mais 1 produto",15, lojaVirtual.getTamanhoEstoque(),0);
-        assertEquals("O estoque do produto deve ser 1 após a inclusão de 1 produto",5, lojaVirtual.getTamanhoEstoque(roupa1));
+        assertEquals("O estoque da loja deve ser 15 após a inclusão de mais 1 Roupa1",15, lojaVirtual.getTamanhoEstoque(),0);
+        assertEquals("O estoque do produto deve ser 5 após a inclusão de 1 Roupa1",5, lojaVirtual.getTamanhoEstoque(roupa1));
 
         lojaVirtual.incluirProdutoNoEstoque(roupa1, 5);
-        assertEquals("O estoque da loja deve ser 7 após a inclusão de mais 5 produtos", 40, lojaVirtual.getTamanhoEstoque(),0);
-        assertEquals("O estoque do produto deve ser 6 após a inclusão de mais 5 produtos", 30, lojaVirtual.getTamanhoEstoque(roupa1));
+        assertEquals("O estoque da loja deve ser 40 após a inclusão de mais 5 Roupa1", 40, lojaVirtual.getTamanhoEstoque(),0);
+        assertEquals("O estoque do produto deve ser 30 após a inclusão de mais 5 Roupa1", 30, lojaVirtual.getTamanhoEstoque(roupa1));
 
 
     }
